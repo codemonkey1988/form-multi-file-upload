@@ -1,0 +1,19 @@
+imports:
+  - { resource: "./FormElements/Form.yaml" }
+  - { resource: "./FormElements/MultiFileUpload.yaml" }
+
+  - { resource: "./Finishers/DeleteUploads.yaml" }
+  - { resource: "./Finishers/EmailToReceiver.yaml" }
+  - { resource: "./Finishers/EmailToSender.yaml" }
+
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          formEditor:
+            translationFiles:
+              20: 'EXT:form_multi_file_upload/Resources/Private/Language/locallang_form_database.xlf'
+            dynamicRequireJsModules:
+              additionalViewModelModules:
+                1619911869: TYPO3/CMS/FormMultiFileUpload/Backend/FormEditor/FormElementsViewModel

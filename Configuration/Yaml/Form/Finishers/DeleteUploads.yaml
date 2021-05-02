@@ -1,0 +1,8 @@
+TYPO3:
+  CMS:
+    Form:
+      prototypes:
+        standard:
+          finishersDefinition:
+            DeleteUploads:
+              implementationClassName: Codemonkey1988\FormMultiFileUpload\Domain\Finishers\DeleteUploadsFinisher

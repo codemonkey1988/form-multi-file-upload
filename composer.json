@@ -1,0 +1,34 @@
+{
+    "name": "codemonkey1988/form-multi-file-upload",
+    "description": "Proof of concept for adding a multi file upload to TYPO3",
+    "type": "typo3-cms-extension",
+    "license": "GPL-2.0-or-later",
+    "keywords": [
+        "TYPO3",
+        "extension",
+        "form",
+        "formframework",
+        "file",
+        "upload"
+    ],
+    "authors": [
+        {
+            "name": "Tim Schreiner",
+            "email": "dev@tim-schreiner.de"
+        }
+    ],
+    "require": {
+        "typo3/cms-core": "^10.4.15",
+        "typo3/cms-form": "^10.4.15"
+    },
+    "autoload": {
+        "psr-4": {
+            "Codemonkey1988\\FormMultiFileUpload\\": "Classes/"
+        }
+    },
+    "extra": {
+        "typo3/cms-core": {
+            "extension-key": "form_multi_file_upload"
+        }
+    }
+}

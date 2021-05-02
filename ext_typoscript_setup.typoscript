@@ -1,0 +1,15 @@
+plugin.tx_form {
+    settings {
+        yamlConfigurations {
+            100 = EXT:form_multi_file_upload/Configuration/Yaml/Form/FormSetup.yaml
+        }
+    }
+}
+
+module.tx_form {
+    settings {
+        yamlConfigurations {
+            100 = EXT:form_multi_file_upload/Configuration/Yaml/Form/FormSetup.yaml
+        }
+    }
+}

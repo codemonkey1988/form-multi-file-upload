@@ -1,0 +1,25 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:formvh="http://typo3.org/ns/TYPO3/CMS/Form/ViewHelpers"
+      xmlns:fmfu="http://typo3.org/ns/Codemonkey1988\FormMultiFileUpload/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+<formvh:renderRenderable renderable="{element}">
+    <f:render partial="Field/Field" arguments="{element: element}" contentAs="elementContent">
+        <fmfu:form.uploadedResource
+            property="{element.identifier}"
+            as="resource"
+            multiple="1"
+            id="{element.uniqueIdentifier}"
+            class="{element.properties.elementClassAttribute}"
+            errorClass="{element.properties.elementErrorClassAttribute}"
+            additionalAttributes="{formvh:translateElementProperty(element: element, property: 'fluidAdditionalAttributes')}"
+            accept="{element.properties.allowedMimeTypes}"
+        >
+            <f:if condition="{resource}">
+                <div id="{element.uniqueIdentifier}-preview">
+                    {resource.originalResource.originalFile.name}
+                </div>
+            </f:if>
+        </fmfu:form.uploadedResource>
+    </f:render>
+</formvh:renderRenderable>
+</html>
