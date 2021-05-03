@@ -63,6 +63,11 @@ class UploadedResourceViewHelper extends UploadViewHelper
         $accept = $this->arguments['accept'];
         $resources = $this->getUploadedResources();
 
+        if ($this->getMappingResultsForProperty()->hasErrors()) {
+            $this->removeUploadedResources($resources);
+            $resources = null;
+        }
+
         if (!empty($accept)) {
             $this->tag->addAttribute('accept', implode(',', $accept));
         }
@@ -103,13 +108,24 @@ class UploadedResourceViewHelper extends UploadViewHelper
      */
     protected function getUploadedResources(): ?ObjectStorage
     {
-        if ($this->getMappingResultsForProperty()->hasErrors()) {
-            return null;
-        }
         $resources = $this->getValueAttribute();
         if ($resources instanceof ObjectStorage) {
             return $resources;
         }
         return $this->propertyMapper->convert($resources, ObjectStorage::class);
+    }
+
+    protected function removeUploadedResources(ObjectStorage $resources): void
+    {
+        foreach ($resources as $resource) {
+            if ($resource instanceof FileReference) {
+                $resource = $resource->getOriginalResource();
+            }
+            $folder = $resource->getParentFolder();
+            $resource->getOriginalFile()->getStorage()->deleteFile($resource->getOriginalFile());
+            if ($folder->getFileCount() === 0 && $folder->getStorage()->countFoldersInFolder($folder) === 0) {
+                $folder->delete();
+            }
+        }
     }
 }
